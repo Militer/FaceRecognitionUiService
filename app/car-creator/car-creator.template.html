@@ -1,0 +1,35 @@
+<md-content id="content" flex>
+    <md-radio-group ng-model="selectedEngine" layout="row">
+        <div layout-align="center" flex>
+            <md-progress-circular md-mode="indeterminate" ng-show="!enginesLoaded" layout-align="center"></md-progress-circular>
+        </div>
+        <md-card ng-repeat="engine in carEngines">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">{{engine.name}}</span>
+                    <span class="md-subhead"> Power: {{engine.power}} </span>
+                    <span class="md-subhead"> Maximum speed: {{engine.maximumSpeed}} </span>
+                    <span class="md-subhead"> Acceleration: {{engine.acceleration}} </span>
+                    <span class="md-subhead"> Price: {{engine.price}} </span>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <div class="md-media-lg card-media">
+                        <img ng-src="http://localhost:8081/{{engine.imagePath}}" class="carousel-image"
+                             alt="{{engine.name}}">
+                    </div>
+                </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="center center">
+                <md-radio-button ng-value="$index" class="radio-button-width"></md-radio-button>
+            </md-card-actions>
+        </md-card>
+    </md-radio-group>
+    <div class="textContent">
+        <p> selected: {{selectedEngine}} </p>
+        <p> Engine name: {{carEngines[selectedEngine].name}} </p>
+        <p> Engine power: {{carEngines[selectedEngine].power}} </p>
+        <p> Engine maximumSpeed: {{carEngines[selectedEngine].maximumSpeed}} </p>
+        <p> Engine acceleration: {{carEngines[selectedEngine].acceleration}} </p>
+        <p> Engine price: {{carEngines[selectedEngine].price}} </p>
+    </div>
+</md-content>
