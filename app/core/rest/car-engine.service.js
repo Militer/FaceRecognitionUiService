@@ -3,8 +3,8 @@
  */
 angular
     .module('core')
-    .factory('CarEngine', ['$resource',
-        function ($resource) {
-            return $resource('http://localhost:8081/carEngine/:id');
+    .factory('CarEngine', ['$resource', 'CAR_ENGINE_BASE_URL',
+        function ($resource, CAR_ENGINE_BASE_URL) {
+            return $resource(CAR_ENGINE_BASE_URL + '/:id');
         }]
     );
