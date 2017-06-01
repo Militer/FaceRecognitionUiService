@@ -3,4 +3,4 @@
  */
 angular
     .module('core', ['ngResource'])
-    .constant('CAR_ENGINE_BASE_URL', '/carEngine');
+    .constant('CAR_ENGINE_BASE_URL', '/car-engine');
