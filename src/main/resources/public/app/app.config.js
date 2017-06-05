@@ -10,13 +10,13 @@ angular
             $stateProvider
                 .state('carCreator', {
                     url: '/car-creator',
-                    templateUrl: 'car-creator/car-creator.template.html',
+                    templateUrl: 'app/car-creator/car-creator.template.html',
                     controller: "CarCreatorController"
                 })
 
                 .state('view2', {
                     url: '/view2',
-                    templateUrl: 'view2/view2.html'
+                    templateUrl: 'app/view2/view2.html'
                 });
         }
     ]);

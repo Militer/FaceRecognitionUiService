@@ -1,8 +1,5 @@
-logs/*
-!.gitkeep
-node_modules/
-bower_components/
-tmp
-.DS_Store
+target/
 .idea
-carRaceUi.iml
+*.iml
+src/main/resources/public/node_modules
+src/main/resources/public/app/bower_components
