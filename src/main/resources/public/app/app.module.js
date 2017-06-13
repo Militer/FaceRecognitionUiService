@@ -7,5 +7,6 @@ angular.module('myApp', [
     'ngResource',
     'core',
     'carCreator',
-    'myApp.view2'
+    'myApp.view2',
+    'imageUploader'
 ]);

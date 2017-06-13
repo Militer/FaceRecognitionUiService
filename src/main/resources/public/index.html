@@ -30,21 +30,27 @@
     <script src="app/car-creator/car-creator.component.js"></script>
     <script src="app/view2/view2.js"></script>
 
+    <script src="app/image/image.module.js"></script>
+    <script src="app/image/image.component.js"></script>
+    <script src="app/image/imageUploader/image-uploader.component.js"></script>
+
     <script src="app/core/core.module.js"></script>
+    <script src="app/core/fileModel.directive.js"></script>
     <script src="app/core/rest/car-engine.service.js"></script>
+    <script src="app/core/rest/image-uploader.service.js"></script>
 </head>
 <body>
 
 <md-toolbar>
     <div class="md-toolbar-tools">
-        <a ui-sref="view2">
+        <a ui-sref="imageUploader">
             <md-button class="md-icon-button" aria-label="Settings">
-                <md-icon md-svg-icon="app/img/icons/menu.svg"></md-icon>
+                <md-icon md-svg-icon="app/img/icons/ic_menu_white_24px.svg"></md-icon>
             </md-button>
         </a>
         <h2 flex md-truncate>Car racing</h2>
         <md-button class="md-icon-button" aria-label="user">
-            <md-icon md-svg-icon="app/img/icons/user.svg"></md-icon>
+            <md-icon md-svg-icon="app/img/icons/ic_account_circle_white_24px.svg"></md-icon>
         </md-button>
     </div>
 </md-toolbar>

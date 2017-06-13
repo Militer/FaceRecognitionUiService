@@ -5,7 +5,7 @@ angular
     .module('myApp')
     .config(['$stateProvider', '$urlRouterProvider',
         function ($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.otherwise('/car-creator');
+            $urlRouterProvider.otherwise('/image');
 
             $stateProvider
                 .state('carCreator', {
@@ -14,9 +14,10 @@ angular
                     controller: "CarCreatorController"
                 })
 
-                .state('view2', {
-                    url: '/view2',
-                    templateUrl: 'app/view2/view2.html'
+                .state('imageUploader', {
+                    url: '/image',
+                    templateUrl: 'app/image/image.template.html',
+                    controller: "ImageController"
                 });
         }
     ]);

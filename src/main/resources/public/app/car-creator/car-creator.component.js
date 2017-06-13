@@ -1,7 +1,7 @@
 'use strict';
 
 angular
-    .module('carCreator', ['ngMaterial', "core"])
+    .module('carCreator')
     .controller('CarCreatorController', ["$scope", "CarEngine",
         function ($scope, CarEngine) {
             console.log('CarCreatorController created.');
