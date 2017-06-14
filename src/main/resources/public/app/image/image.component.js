@@ -3,9 +3,10 @@
  */
 angular
     .module('imageUploader')
-    .controller('ImageController', ['$scope', '$mdDialog', 'ImageService',
-        function ($scope, $mdDialog, ImageService) {
+    .controller('ImageController', ['$scope', '$mdDialog', '$mdToast', 'ImageService', 'FaceDetectorService',
+        function ($scope, $mdDialog, $mdToast, ImageService, FaceDetectorService) {
             "use strict";
+
             $scope.newImage = {};
             $scope.submit = function () {
                 ImageService.save($scope.newImage, function (result) {
@@ -34,10 +35,44 @@ angular
                     clickOutsideToClose: true
                 })
                     .then(function (answer) {
-                        $scope.status = 'Image uploaded successfully: "' + answer + '"!';
+                        if (answer === 'Success') {
+                            $scope.refreshImages();
+                            $mdToast.show(
+                                $mdToast.simple()
+                                    .textContent('Image successfully uploaded!')
+                                    .hideDelay(1000)
+                                    .position('top')
+                            );
+                            $scope.status = 'Image uploaded successfully: "' + answer + '"!';
+                        }
                     }, function () {
+                        $mdToast.show(
+                            $mdToast.simple()
+                                .textContent('Image failed to upload!')
+                                .hideDelay(3000)
+                                .position('top', 'right')
+                        );
                         $scope.status = 'Image not uploaded.';
                     });
             };
+
+            $scope.imageWithFaceDetection = {};
+            $scope.detectFaces = function (imageId) {
+                var imageWithFaceDetection = FaceDetectorService.get({imageId: imageId}, function (result) {
+                    console.log("SUCCESS");
+                    $scope.imageWithFaceDetection = imageWithFaceDetection;
+                    console.log('We got the following faces: ' + JSON.stringify(result));
+                }, function (error) {
+                    console.log("FAILED");
+                    console.log(JSON.stringify(error));
+                    console.log("ERROR" + error);
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .textContent('Failed to get the faces for the picture!' + JSON.stringify(error))
+                            .hideDelay(3000)
+                            .position('top', 'right')
+                    );
+                });
+            }
         }
     ]);

@@ -1,28 +1,44 @@
-<div layout="column">
-    <h1>{{status}}</h1>
-    <md-button class="md-primary md-raised" ng-click="uploadImageDialog($event)"  >
-        Prompt Dialog
-    </md-button>
+<div layout="row">
+    <div>
+        <div layout-align="column">
+            <h1>{{status}}</h1>
+            <md-button class="md-primary md-raised" ng-click="uploadImageDialog($event)">
+                Prompt Dialog
+            </md-button>
+            <md-button ng-click="refreshImages()">
+                <md-icon md-svg-icon="app/img/icons/ic_refresh_black_24px.svg" aria-label="Refresh"></md-icon>
+            </md-button>
+        </div>
 
-    <md-button ng-click="refreshImages()">
-        <md-icon md-svg-icon="app/img/icons/ic_refresh_black_24px.svg" aria-label="Refresh"></md-icon>
-    </md-button>
-    <md-content class="md-padding" layout-xs="column" layout="row">
-        <md-card ng-repeat="image in images">
-            <md-card-title>
-                <md-card-title-text>
-                    <span class="md-headline">{{image.name}}</span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content layout="row" layout-align="space-between">
-                <div class="md-media-xl card-media"></div>
-                <img ng-src="data:image/{{image.extension}};base64,{{image.image}}" aria-label="{{image.name}}"/>
-                <md-card-actions layout="column">
-                    <md-button aria-label="Face recognition">
-                        <md-icon md-svg-icon="app/img/icons/ic_tag_faces_black_24px.svg"></md-icon>
-                    </md-button>
-                </md-card-actions>
-            </md-card-content>
-        </md-card>
-    </md-content>
+        <md-content class="md-padding" layout-xs="column" layout="column" layout-align="center center">
+            <div>
+                <md-card ng-repeat="image in images">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">{{image.name}}</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content layout="row" layout-align="space-between">
+                        <div class="md-media-xl card-media"></div>
+                        <img ng-src="data:image/{{image.extension}};base64,{{image.image}}"
+                             style="width: 300px"
+                             aria-label="{{image.name}}"/>
+                        <md-card-actions layout="column">
+                            <md-button ng-click="detectFaces(image.id)" aria-label="Face recognition">
+                                <md-icon md-svg-icon="app/img/icons/ic_tag_faces_black_24px.svg"></md-icon>
+                            </md-button>
+                        </md-card-actions>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </md-content>
+    </div>
+    <div>
+        <h1>The processed image:</h1>
+        <h2>{{imageWithFaceDetection.name}}</h2>
+        <h2>{{imageWithFaceDetection.extension}}</h2>
+        <img ng-src="data:image/{{imageWithFaceDetection.extension}};base64,{{imageWithFaceDetection.image}}"
+             style="width: 300px"
+             aria-label="{{image.name}}"/>
+    </div>
 </div>

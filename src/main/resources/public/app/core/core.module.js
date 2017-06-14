@@ -4,4 +4,4 @@
 angular
     .module('core', ['ngResource'])
     .constant('CAR_ENGINE_BASE_URL', '/car-service/car-engine')
-    .constant('IMAGE_UPLOAD_BASE_URL', 'http://localhost:8081/image');
+    .constant('SERVER_BASE_URL', 'http://localhost:8081');

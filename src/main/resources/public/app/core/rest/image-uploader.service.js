@@ -3,9 +3,9 @@
  */
 angular
     .module('core')
-    .factory('ImageService', ['$resource', 'IMAGE_UPLOAD_BASE_URL',
-        function ($resource, IMAGE_UPLOAD_BASE_URL) {
-            return $resource(IMAGE_UPLOAD_BASE_URL + '/:image', {}, {
+    .factory('ImageService', ['$resource', 'SERVER_BASE_URL',
+        function ($resource, SERVER_BASE_URL) {
+            return $resource(SERVER_BASE_URL + '/image/:image', {}, {
                 save: {
                     method: 'POST',
                     transformRequest: function(data) {

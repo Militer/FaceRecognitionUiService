@@ -9,7 +9,6 @@ angular
             $scope.newImage = {};
             $scope.submit = function () {
                 ImageService.save($scope.newImage, function () {
-                    $mdDialog.cancel();
                     console.log("Upload succesfull!");
                     $mdDialog.hide("Success");
                 }, function(error) {
@@ -20,7 +19,7 @@ angular
 
             $scope.cancel = function(){
                 $mdDialog.cancel();
-            }
+            };
 
             $scope.answer = function(answer) {
                 $mdDialog.hide(answer);
