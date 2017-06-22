@@ -17,8 +17,10 @@ angular
 
             $scope.refreshImages = function () {
                 var images = ImageService.query(function () {
+                    images.forEach(function (image){
+                        image.faceDetected = false;
+                    });
                     $scope.images = images;
-                    console.log("All images: " + JSON.stringify($scope.images));
                 }, function (error) {
                     console.log("Error encountered while trying to get all images: " + JSON.stringify(error));
                 });
@@ -57,15 +59,12 @@ angular
             };
 
             $scope.imageWithFaceDetection = {};
-            $scope.detectFaces = function (imageId) {
+            $scope.detectFaces = function (imageId, index) {
                 var imageWithFaceDetection = FaceDetectorService.get({imageId: imageId}, function (result) {
-                    console.log("SUCCESS");
-                    $scope.imageWithFaceDetection = imageWithFaceDetection;
-                    console.log('We got the following faces: ' + JSON.stringify(result));
+                    imageWithFaceDetection.faceDetected = true;
+                    $scope.images[index] = imageWithFaceDetection;
                 }, function (error) {
-                    console.log("FAILED");
-                    console.log(JSON.stringify(error));
-                    console.log("ERROR" + error);
+                    console.log("Exception encountered while trying to get the image with the face detected: " + JSON.stringify(error));
                     $mdToast.show(
                         $mdToast.simple()
                             .textContent('Failed to get the faces for the picture!' + JSON.stringify(error))
@@ -73,6 +72,21 @@ angular
                             .position('top', 'right')
                     );
                 });
-            }
+            };
+
+            $scope.refreshImage = function (imageId, index) {
+                var image = ImageService.get({image: imageId}, function (result) {
+                    image.faceDetected = false;
+                    $scope.images[index] = image;
+                }, function (error) {
+                    console.log("Exception encountered while trying to get the image: " + JSON.stringify(error));
+                    $mdToast.show(
+                        $mdToast.simple()
+                            .textContent('Failed to get the the picture!' + JSON.stringify(error))
+                            .hideDelay(3000)
+                            .position('top', 'right')
+                    );
+                });
+            };
         }
     ]);
